@@ -1,7 +1,3 @@
-FROM gradle:8-jdk17 AS build
-COPY . .
-RUN gradle bootJar --no-daemon
-
 FROM amazoncorretto:17
-COPY --from=build /home/gradle/build/libs/*.jar app.jar
+COPY demo/build/libs/demo-0.0.1-SNAPSHOT.jar app.jar
 CMD ["java", "-jar", "app.jar"]
